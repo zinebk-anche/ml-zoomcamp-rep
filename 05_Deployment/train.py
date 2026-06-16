@@ -26,7 +26,7 @@ df = pd.read_csv('data-week-3.csv')
 
 df.columns = df.columns.str.lower().str.replace(' ', '_')
 
-categorical_columns = list(df.dtypes[df.dtypes == 'str'].index)
+categorical_columns = list(df.dtypes[df.dtypes == 'object'].index)
 
 for c in categorical_columns:
     df[c] = df[c].str.lower().str.replace(' ', '_')
