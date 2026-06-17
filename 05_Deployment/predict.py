@@ -11,6 +11,11 @@ with open(model_file, 'rb') as f_in:
     dv,model = pickle.load(f_in)
 
 app = Flask('churn')
+
+@app.route('/', methods=['GET'])
+def health():
+    return jsonify({'status': 'ok'})
+
 @app.route('/predict', methods = ['POST'])
 
 
@@ -30,5 +35,4 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port = 9696)
-
 

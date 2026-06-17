@@ -1,10 +1,12 @@
 
 
 import requests
+# uncomment bellow and add host when deploying to cloud
+# host = ''
+# url = f'http://{host}/predict'
 
-
-url = 'http://localhost:9696/predict'
-
+# comment here instead
+url = f'http://localhost:9696/predict'
 
 customer = {
     "gender": "female",
@@ -28,8 +30,12 @@ customer = {
     "totalcharges": 29.85
 }
 
-response = requests.post(url, json = customer).json()
-print(f'{response}')
+response = requests.post(url, json=customer)
 
-if response['churn'] == True:
-    print('Send promo email to customerID number %s'%('xyz-123'))
+print(response.status_code)
+print(response.text)
+
+result = response.json()
+
+if result["churn"] == True:
+    print("Send promo email to customerID number xyz-123")
